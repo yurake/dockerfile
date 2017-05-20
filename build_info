@@ -1,0 +1,4 @@
+DOCKER_TAG=ver1.3
+TARGET=httpd
+REPO=build_$TARGET
+DOCKER_REPO=yurak/$TARGET
