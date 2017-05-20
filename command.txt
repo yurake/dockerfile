@@ -1,0 +1,6 @@
+cd /c/Users/YURA/docker/git/dockerfile
+docker build -t yurak/httpd:ver1.1 ./build_httpd
+docker run -itd -p 8000:80 --name web01 yurak/httpd:ver1.1
+
+curl http://192.168.99.100:8000
+
