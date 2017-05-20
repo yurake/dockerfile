@@ -12,3 +12,16 @@ docker run -itd -p 8000:80 --name rails01 yurak/rails:ver1.0
 
 curl http://192.168.99.100:8000/messages
 
+### build_mysql ###
+docker build -t yurak/mysql:ver1.0 ./build_mysql
+docker run -itd -p 8000:80 --name mysql01 yurak/mysql:ver1.0
+
+docker attach mysql01
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'nodeuser'@'localhost';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'nodeuser'@'%' IDENTIFIED BY 'pas4mysql';"
+mysql -u nodeuser -e "CREATE DATABASE shorturl_service;"
+mysql shorturl_service -u nodeuser -e "CREATE TABLE usr_list (hash CHAR(12) PRIMARY KEY, url VARCHAR(256) UNIQUE NOT NULL COLLATE utf8_bin);"
+mysql -u nodeuser -e "SHOW DATABASES"
+mysql shorturl_service -u nodeuser -e "SHOW TABLES"
+
+curl http://192.168.99.100:8000/messages
