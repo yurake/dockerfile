@@ -1,7 +1,7 @@
 # Dcokerfile for Short URL Service
 
 FROM enakai00/centos:centos6
-MAINTAINER Etsuji Nakai
+MAINTAINER YURAK
 
 RUN yum -y install epel-release
 RUN yum -y install nodejs nodejs-mysql nodejs-ejs nodejs-express
