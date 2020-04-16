@@ -10,28 +10,30 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v1
-      - name: setup minikube
-        uses: manusa/actions-setup-minikube@v1.0.1
-        with:
-          minikube version: "v1.5.2"
-          kubernetes version: "v1.16.2"
       - name: minikube config change
         run: |
           minikube config set memory 16384
-          echo "default user"
+          echo "## default user ##"
           pwd
           whoami
           echo ${PATH}
-          echo "sudo user"
+          ls -ltr
+          echo "## sudo user ##"
           sudo pwd
           sudo whoami
           sudo echo ${PATH}
           sudo cp -p /home/runner/work/_temp/minikube /home/runner/work/dockerfile/dockerfile/.
+          ls -ltr
           sudo minikube config set cpus 8
           sudo minikube config set disk-size 80g
           minikube stop
           minikube delete
           sudo minikube start --vm-driver=none
+      - name: setup minikube
+        uses: manusa/actions-setup-minikube@v1.0.1
+        with:
+          minikube version: "v1.5.2"
+          kubernetes version: "v1.16.2"
       - name: minikube addon settings
         run: |
           sudo minikube addons enable ingress
