@@ -19,8 +19,9 @@ jobs:
         run: |
           minikube config set memory 16384
           sudo pwd
+          sudo whoami
           sudo echo ${PATH}
-          sudo cp -p /home/runner/work/_temp/minikube ~/.
+          sudo cp -p /home/runner/work/_temp/minikube /home/runner/work/dockerfile/dockerfile/.
           sudo minikube config set cpus 8
           sudo minikube config set disk-size 80g
           minikube stop
