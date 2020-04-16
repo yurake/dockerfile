@@ -1,0 +1,48 @@
+name: e2e test on Minikube
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  minikube:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: setup minikube
+        uses: manusa/actions-setup-minikube@v1.0.1
+        with:
+          minikube version: "v1.5.2"
+          kubernetes version: "v1.16.2"
+      - name: minikube config change
+        run: |
+          minikube config set memory 16384
+          sudo pwd
+          sudo echo ${PATH}
+          sudo cp -p /home/runner/work/_temp/minikube ~/.
+          sudo minikube config set cpus 8
+          sudo minikube config set disk-size 80g
+          minikube stop
+          minikube delete
+          sudo minikube start --vm-driver=none
+      - name: minikube addon settings
+        run: |
+          sudo minikube addons enable ingress
+          sudo minikube addons list
+      - name: apply service
+        run: |
+          sudo ./kubernetes/apply.sh
+      - name: check before test
+        run: |
+          sudo kubectl get nodes
+          sudo kubectl get all
+          sudo kubectl get all -n monitoring
+          sudo kubectl get ingress
+      - name: e2e test
+        run: |
+          sudo kubectl apply -f kubernetes/monitoring/test/postmannewman/postmannewman-job.yaml
+          sudo kubectl -n monitoring wait --for=condition=complete --timeout=600s job/postmannewman-job
+          sudo kubectl -n monitoring describe job postmannewman-job
+          sudo kubectl -n monitoring logs -f $(kubectl get pods -n monitoring | awk '{print $1}' | grep postmannewman-job)
+          sudo kubectl get po --all-namespaces=true
