@@ -12,7 +12,6 @@ jobs:
         uses: actions/checkout@v1
       - name: minikube config change
         run: |
-          minikube config set memory 16384
           echo "## default user ##"
           pwd
           whoami
@@ -24,6 +23,7 @@ jobs:
           sudo echo ${PATH}
           sudo cp -p /home/runner/work/_temp/minikube /home/runner/work/dockerfile/dockerfile/.
           ls -ltr
+          minikube config set memory 16384
           sudo minikube config set cpus 8
           sudo minikube config set disk-size 80g
           minikube stop
