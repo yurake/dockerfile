@@ -18,36 +18,19 @@ jobs:
       - name: minikube config change
         run: |
           echo "## default user ##"
-          pwd
-          whoami
-          echo ${PATH}
-          ls -ltr
-          which minikube
-          which kubectl
-          echo "## sudo user ##"
-          sudo pwd
-          sudo whoami
-          sudo echo ${PATH}
-          sudo cp -p /home/runner/work/_temp/minikube /home/runner/work/dockerfile/dockerfile/.
-          ls -ltr
-          sudo which minikube
-          sudo which kubectl
-          minikube config set memory 16384
-          sudo minikube config set cpus 8
-          sudo minikube config set disk-size 80g
+          sudo /home/runner/work/_temp/minikube config set memory 16384
+          sudo /home/runner/work/_temp/minikube config set cpus 8
+          sudo /home/runner/work/_temp/minikube config set disk-size 80g
           minikube stop
           minikube delete
-          sudo minikube start --vm-driver=none
+          sudo /home/runner/work/_temp/minikube start --vm-driver=none
       - name: minikube addon settings
         run: |
-          sudo minikube addons enable ingress
-          sudo minikube addons list
-      - name: apply service
-        run: |
-          sudo ./kubernetes/apply.sh
+          sudo /home/runner/work/_temp/minikube addons enable ingress
+          sudo /home/runner/work/_temp/minikube addons list
       - name: check before test
         run: |
-          sudo kubectl get nodes
+          kubectl get nodes
           sudo kubectl get all
           sudo kubectl get all -n monitoring
           sudo kubectl get ingress
