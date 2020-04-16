@@ -18,6 +18,11 @@ jobs:
       - name: minikube config change
         run: |
           minikube config set memory 16384
+          echo "default user"
+          pwd
+          whoami
+          echo ${PATH}
+          echo "sudo user"
           sudo pwd
           sudo whoami
           sudo echo ${PATH}
