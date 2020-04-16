@@ -30,8 +30,8 @@ jobs:
           sudo echo ${PATH}
           sudo cp -p /home/runner/work/_temp/minikube /home/runner/work/dockerfile/dockerfile/.
           ls -ltr
-          which minikube
-          which kubectl
+          sudo which minikube
+          sudo which kubectl
           minikube config set memory 16384
           sudo minikube config set cpus 8
           sudo minikube config set disk-size 80g
