@@ -10,7 +10,14 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v1
+      - name: delete not use modules
+        run: |
+          df -h
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/lib/android
+          df -h
       - name: manage disk
         run: |
+          echo ${PATH}
           sudo du -ma / | sort -rn | head -100
           sudo du -m / | sort -rn | head -100
