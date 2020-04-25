@@ -36,5 +36,6 @@ jobs:
           ls -la /home/runner/work/_temp
           sudo mv /home/runner/work/_temp/.minikube $HOME
           sudo chown -R $USER $HOME/.minikube
-          sudo ~/.minikube addons enable ingress
-          sudo ~/.minikube addons list
+          echo $HOME
+          sudo $HOME/.minikube addons enable ingress
+          sudo $HOME/.minikube addons list
