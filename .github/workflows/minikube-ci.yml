@@ -34,8 +34,8 @@ jobs:
       - name: minikube addon settings
         run: |
           ls -la /home/runner/work/_temp
-          sudo mv /home/runner/work/_temp/.minikube $HOME
+          sudo mv /home/runner/work/_temp/.minikube $HOME/.
           sudo chown -R $USER $HOME/.minikube
-          echo $HOME
+          ls -la $HOME
           sudo $HOME/.minikube addons enable ingress
           sudo $HOME/.minikube addons list
