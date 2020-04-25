@@ -33,9 +33,10 @@ jobs:
           kubernetes version: ${{ matrix.kubernetes }}
       - name: minikube addon settings
         run: |
-          ls -la /home/runner/work/_temp
+          sudo ls -la /home/runner/work/_temp
           sudo mv /home/runner/work/_temp/.minikube $HOME/.
           sudo chown -R $USER $HOME/.minikube
-          ls -la $HOME
+          sudo pwd
+          sudo ls -la $HOME
           sudo $HOME/.minikube addons enable ingress
           sudo $HOME/.minikube addons list
