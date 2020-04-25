@@ -33,6 +33,7 @@ jobs:
           kubernetes version: ${{ matrix.kubernetes }}
       - name: minikube addon settings
         run: |
+          sudo which kubectl
           sudo ls -la /home/runner/work/_temp
           sudo mv /home/runner/work/_temp/.minikube $HOME/.
           sudo chown -R $USER $HOME/.minikube
