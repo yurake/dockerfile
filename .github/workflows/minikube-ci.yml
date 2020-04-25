@@ -38,5 +38,6 @@ jobs:
           sudo chown -R $USER $HOME/.minikube
           sudo pwd
           sudo ls -la $HOME
-          sudo $HOME/.minikube addons enable ingress
-          sudo $HOME/.minikube addons list
+          sudo $HOME/minikube addons enable ingress
+          sudo $HOME/minikube addons list
+          sudo minikube addons list
