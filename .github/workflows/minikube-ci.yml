@@ -10,25 +10,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v1
-      - name: setup minikube
-        uses: manusa/actions-setup-minikube@v1.0.1
-        with:
-          minikube version: "v1.5.2"
-          kubernetes version: "v1.16.2"
-      - name: minikube addon settings
+      - name: manage disk
         run: |
-          sudo /home/runner/work/_temp/minikube addons enable ingress
-          sudo /home/runner/work/_temp/minikube addons list
-      - name: check before test
-        run: |
-          kubectl get nodes
-          sudo kubectl get all
-          sudo kubectl get all -n monitoring
-          sudo kubectl get ingress
-      - name: e2e test
-        run: |
-          sudo kubectl apply -f kubernetes/monitoring/test/postmannewman/postmannewman-job.yaml
-          sudo kubectl -n monitoring wait --for=condition=complete --timeout=600s job/postmannewman-job
-          sudo kubectl -n monitoring describe job postmannewman-job
-          sudo kubectl -n monitoring logs -f $(kubectl get pods -n monitoring | awk '{print $1}' | grep postmannewman-job)
-          sudo kubectl get po --all-namespaces=true
+          sudo du -ma / | sort -rn | head -100
+          sudo du -m / | sort -rn | head -100
