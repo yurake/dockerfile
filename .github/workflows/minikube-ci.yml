@@ -31,7 +31,7 @@ jobs:
           sudo minikube addons list
           sudo echo ::set-env name=MINIKUBE_HOME::$HOME
           sudo cat $HOME/.kube/config
-          sudo cat $HOME/.kube/config | sed -e 's/work\/_temp\///g' > $HOME/.kube/config
+          sudo sed -i -e 's/work\/_temp\///g' $HOME/.kube/config
           sudo cat $HOME/.kube/config
       - name: apply minimal service
         run: |
