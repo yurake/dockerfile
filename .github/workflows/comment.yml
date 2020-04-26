@@ -16,5 +16,5 @@ jobs:
           filename: .github/ISSUE_TEMPLATE/feature_request.md
         id: create-issue
       - run: |
-          'echo Created issue number ${{ steps.create-issue.outputs.number }}'
-          'echo Created ${{ steps.create-issue.outputs.url }}'
+          echo Created issue number ${{ steps.create-issue.outputs.number }}
+          echo Created ${{ steps.create-issue.outputs.url }}
