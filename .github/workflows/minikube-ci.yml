@@ -34,4 +34,6 @@ jobs:
           sudo ls -ltra /usr/bin/minikube
           sudo minikube addons enable ingress
           sudo minikube addons list
-          sudo minikube addons list
+      - name: apply minimal service
+        run: |
+          sudo sh ./kubernetes/apply-default-minimal.sh
