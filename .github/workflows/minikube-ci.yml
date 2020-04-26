@@ -34,11 +34,13 @@ jobs:
       - name: minikube addon settings
         run: |
           sudo which kubectl
+          sudo ls -ltra /usr/bin
           sudo ls -la /home/runner/work/_temp
-          sudo mv /home/runner/work/_temp/.minikube $HOME/.
+          sudo mv /home/runner/work/_temp/.minikube $HOME
+          sudo mv $HOME/minikube /usr/bin
           sudo chown -R $USER $HOME/.minikube
           sudo pwd
-          sudo ls -la $HOME
-          sudo $HOME/minikube addons enable ingress
-          sudo $HOME/minikube addons list
+          sudo ls -ltra /usr/bin
+          sudo minikube addons enable ingress
+          sudo minikube addons list
           sudo minikube addons list
