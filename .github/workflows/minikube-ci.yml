@@ -30,6 +30,8 @@ jobs:
           sudo minikube addons enable ingress
           sudo minikube addons list
           echo ::set-env name=MINIKUBE_HOME::$HOME
+          sudo echo $KUBECONFIG
+          sudo echo $ENV
           echo $KUBECONFIG
           echo $ENV
       - name: apply minimal service
