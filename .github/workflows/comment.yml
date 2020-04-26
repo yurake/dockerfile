@@ -23,10 +23,8 @@ jobs:
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
-          issue-number: ${{ steps.create-issue.outputs.number }}
+          issue-number: ${{ github.event.issue.number }}
           body: |
-            This is a multi-line test comment
-            - With GitHub **Markdown**
-            - Created by [create-or-update-comment][1]
-
-            [1]: ${{ steps.create-issue.outputs.url }}
+            Please see new issue: ¥#${{ steps.create-issue.outputs.number }}  
+            ${{ steps.create-issue.outputs.url }}  
+            
