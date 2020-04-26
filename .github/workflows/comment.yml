@@ -1,7 +1,6 @@
 name: Comment
 
 on:
-  push:
   issues:
     types: [opened, labeled, assigned, reopened]
 
