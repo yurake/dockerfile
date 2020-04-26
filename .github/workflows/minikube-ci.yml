@@ -13,17 +13,6 @@ jobs:
         minikube: [v1.8.2, v1.9.2]
         kubernetes: [v1.18.0, v1.18.2]
     steps:
-      - name: delete installed software not use
-        run: |
-          df -h /
-          sudo rm -rf /opt/ghc
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/share/swift
-          sudo rm -rf /opt/hostedtoolcache/Python
-          sudo rm -rf /opt/hostedtoolcache/Ruby
-          df -h /
-          
       - name: checkout
         uses: actions/checkout@v1
       - name: setup minikube
@@ -34,13 +23,12 @@ jobs:
       - name: minikube addon settings
         run: |
           sudo which kubectl
-          sudo ls -ltra /usr/bin
+          sudo ls -ltra /usr/bin/kubectl
           sudo ls -la /home/runner/work/_temp
           sudo mv /home/runner/work/_temp/.minikube $HOME
-          sudo mv $HOME/minikube /usr/bin
+          sudo mv /home/runner/work/_temp/minikube /usr/bin
           sudo chown -R $USER $HOME/.minikube
-          sudo pwd
-          sudo ls -ltra /usr/bin
+          sudo ls -ltra /usr/bin/minikube
           sudo minikube addons enable ingress
           sudo minikube addons list
           sudo minikube addons list
