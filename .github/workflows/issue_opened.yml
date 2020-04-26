@@ -15,4 +15,4 @@ jobs:
       - name: Assign issues to project
         uses: srggrs/assign-one-project-github-action@1.2.0
         with:
-          project: 'https://github.com/yurake/k8s-3tier-webapp/projects/1'
+          project: 'https://github.com/yurake/dockerfile/projects/1'
