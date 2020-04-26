@@ -7,6 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: create issue
         uses: JasonEtco/create-an-issue@v2
         env:
