@@ -25,15 +25,13 @@ jobs:
           kubernetes version: ${{ matrix.kubernetes }}
       - name: minikube addon settings
         run: |
-          sudo which kubectl
-          sudo ls -ltra /usr/bin/kubectl
-          sudo ls -la /home/runner/work/_temp
           sudo mv /home/runner/work/_temp/.minikube $HOME
           sudo mv /home/runner/work/_temp/minikube /usr/bin
-          sudo chown -R $USER $HOME/.minikube
-          sudo ls -ltra /usr/bin/minikube
           sudo minikube addons enable ingress
           sudo minikube addons list
+          echo ::set-env name=MINIKUBE_HOME::$HOME
+          echo $KUBECONFIG
+          echo $ENV
       - name: apply minimal service
         run: |
-          sudo sh ./kubernetes/apply-default-minimal.sh
+          sudo sh ./k8s-3tier-webapp/kubernetes/apply-default-minimal.sh
