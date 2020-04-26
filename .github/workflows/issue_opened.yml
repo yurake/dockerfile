@@ -5,6 +5,8 @@ on:
     types: [opened, labeled, assigned, reopened]
   pull_request:
     types: [opened]
+  issue_comment:
+    tyoes: [created]
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
