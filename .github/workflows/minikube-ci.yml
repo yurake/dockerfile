@@ -30,7 +30,7 @@ jobs:
           sudo minikube addons enable ingress
           sudo minikube addons list
           sudo echo ::set-env name=MINIKUBE_HOME::$HOME
-          sudo cat .kube/config
+          sudo cat $HOME/.kube/config
       - name: apply minimal service
         run: |
           sudo sh ./k8s-3tier-webapp/kubernetes/apply-default-minimal.sh
