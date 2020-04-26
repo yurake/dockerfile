@@ -31,6 +31,8 @@ jobs:
           sudo minikube addons list
           sudo echo ::set-env name=MINIKUBE_HOME::$HOME
           sudo cat $HOME/.kube/config
+          sudo cat $HOME/.kube/config | sed -e 's/work\/_temp\///g'
+          sudo cat $HOME/.kube/config
       - name: apply minimal service
         run: |
           sudo sh ./k8s-3tier-webapp/kubernetes/apply-default-minimal.sh
