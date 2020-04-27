@@ -22,4 +22,5 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Please see new issue ${{ steps.create-issue.outputs.url }}  
+            Please see actions log ${{ jobs.html_url }}  
             
