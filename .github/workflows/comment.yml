@@ -22,5 +22,5 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Please see new issue ${{ steps.create-issue.outputs.url }}  
-            Please see actions log ${{ jobs.html_url }}  
+            Please see actions log: https://github.com/yurake/dockerfile/actions/runs/${{ job.container.id }}  
             
